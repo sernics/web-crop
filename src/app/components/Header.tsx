@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -7,14 +8,16 @@ export default function Header() {
         <h1 className="text-4xl font- font-serif">
           CROP
         </h1>
-        <Image
-          src="/favicon.ico"
-          alt="Logo"
-          width={48}
-          height={48}
-          className="h-12 w-auto" /* Ajusta el tamaño del logo */
-          style={{ filter: "invert(35%) sepia(12%) saturate(400%) hue-rotate(60deg) brightness(90%) contrast(85%)" }} /* Aplica el color #697565 */
-        />
+        <Link href="/">
+          <Image
+        src="/favicon.ico"
+        alt="Logo"
+        width={48}
+        height={48}
+        className="h-12 w-auto" /* Ajusta el tamaño del logo */
+        style={{ filter: "invert(35%) sepia(12%) saturate(400%) hue-rotate(60deg) brightness(90%) contrast(85%)" }} /* Aplica el color #697565 */
+          />
+        </Link>
       </div>
     </header>
   );
