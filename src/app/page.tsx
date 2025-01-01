@@ -27,24 +27,11 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 space-y-8">
-      {/* Título */}
-      <div className="w-3/4 border-2 border-[#697565] p-6 rounded-lg text-center">
-        <h1 className="text-4xl sm:text-4xl font-bold" style={{ color: '#1e201e' }}>
-          Crop Recognition Of Plants Diseases
-        </h1>
-      </div>
+      <Section title="Crop Recognition Of Plants Diseases" className="w-3/4 border-2 border-[#697565] p-6 rounded-lg text-center" />
+      <Section title="Suba una imagen de la planta que desee evaluar, y el sistema indicará si la planta tiene alguna enfermedad." className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center" />
 
-      {/* Descripción */}
-      <div className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center">
-        <p className="text-lg sm:text-md font-bold" style={{ color: '#1e201e' }}>
-          Suba una imagen de la planta que desee evaluar, y el sistema indicará si la planta tiene alguna enfermedad.
-        </p>
-      </div>
-
-      {/* Espacio para la imagen */}
       <div className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg">
         <div className="flex flex-col items-center space-y-4">
-          {/* Vista previa de la imagen */}
           {image ? (
             <img
               src={image}
@@ -52,33 +39,59 @@ export default function Page() {
               className="w-full max-w-md h-auto rounded-lg"
             />
           ) : (
-            <div className="w-full h-64 flex justify-center items-center rounded-lg" style={{ backgroundColor: '#ecdfcc' }}>
-              <span style={{ color: '#1e201e' }}>No se ha seleccionado ninguna imagen</span>
-            </div>
+            <Placeholder />
           )}
 
-          {/* Input para subir imagen */}
-            <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="block w-full text-sm 
-              file:mr-4 file:py-2 file:px-4
-              file:rounded-lg file:border-0
-              file:text-sm file:font-semibold
-              file:bg-gray-200 file:text-gray-700
-              hover:file:bg-gray-300" style={{ color: '#697565', fontWeight: 'bold' }}
-            />
-
-          {/* Botón para guardar */}
-          <button
-            onClick={handleSaveImage}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          >
-            Guardar Imagen
-          </button>
+          <ImageUploadInput onChange={handleImageUpload} />
+          <SaveButton onClick={handleSaveImage} />
         </div>
       </div>
     </div>
   );
 }
+
+function Section({ title, className }: { title: string; className: string }) {
+  return (
+    <div className={className}>
+      <h1 className="text-4xl sm:text-4xl font-bold" style={{ color: '#1e201e' }}>
+        {title}
+      </h1>
+    </div>
+  );
+}
+
+function Placeholder() {
+  return (
+    <div className="w-full h-64 flex justify-center items-center rounded-lg" style={{ backgroundColor: '#ecdfcc' }}>
+      <span style={{ color: '#1e201e' }}>No se ha seleccionado ninguna imagen</span>
+    </div>
+  );
+}
+
+function ImageUploadInput({ onChange }: { onChange: (event: React.ChangeEvent<HTMLInputElement>) => void }) {
+  return (
+    <input
+      type="file"
+      accept="image/*"
+      onChange={onChange}
+      className="block w-full text-sm 
+        file:mr-4 file:py-2 file:px-4
+        file:rounded-lg file:border-0
+        file:text-sm file:font-semibold
+        file:bg-gray-200 file:text-gray-700
+        hover:file:bg-gray-300" style={{ color: '#697565', fontWeight: 'bold' }}
+    />
+  );
+}
+
+function SaveButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+    >
+      Guardar Imagen
+    </button>
+  );
+}
+
