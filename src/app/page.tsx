@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 space-y-8">
       <Section title="Crop Recognition Of Plants Diseases" className="w-3/4 border-2 border-[#697565] p-6 rounded-lg text-center" />
-      <Section title="Suba una imagen de la planta que desee evaluar, y el sistema indicará si la planta tiene alguna enfermedad." className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center" />
+      <SmallSection title="Suba una imagen de la planta que desee evaluar, y el sistema indicará si la planta tiene alguna enfermedad." className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center" />
 
       <div className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg">
         <div className="flex flex-col items-center space-y-4">
@@ -54,6 +54,16 @@ function Section({ title, className }: { title: string; className: string }) {
   return (
     <div className={className}>
       <h1 className="text-4xl sm:text-4xl font-bold" style={{ color: '#1e201e' }}>
+        {title}
+      </h1>
+    </div>
+  );
+}
+
+function SmallSection({ title, className }: { title: string; className: string }) {
+  return (
+    <div className={className}>
+      <h1 className="text-xl sm:text-xl font-bold" style={{ color: '#1e201e' }}>
         {title}
       </h1>
     </div>
