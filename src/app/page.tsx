@@ -30,7 +30,7 @@ export default function Page() {
           body: JSON.stringify({ image: base64 }),
         });    
         const data = await response.json();
-        console.log('Respuesta de la API:', data);
+        setMessage(data.healthy);
       } catch (error) {
         console.error('Error al enviar la imagen:', error);
       }
@@ -57,7 +57,7 @@ export default function Page() {
           )}
 
           <ImageUploadInput onChange={handleImageUpload} />
-          <SaveButton onClick={handleSaveImage} />
+          <SaveButton onClick={handleSaveImage} message={message} />
         </div>
       </div>
     </div>
@@ -108,14 +108,17 @@ function ImageUploadInput({ onChange }: { onChange: (event: React.ChangeEvent<HT
   );
 }
 
-function SaveButton({ onClick }: { onClick: () => void }) {
+function SaveButton({ onClick, message }: { onClick: () => void; message: string }) {
   return (
-    <button
-      onClick={onClick}
-      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-    >
-      Guardar Imagen
-    </button>
+    <div className="flex items-center space-x-4">
+      <button
+        onClick={onClick}
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        Guardar Imagen
+      </button>
+      <span>{message}</span>
+    </div>
   );
 }
 
