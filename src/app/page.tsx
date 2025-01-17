@@ -19,7 +19,7 @@ export default function Page() {
 
   const handleSaveImage = async () => {
     if (image) {
-      const base64 = image.split(',')[1]; // Elimina el prefijo de la URI base64
+      const base64 = image.split(',')[1]; // Remove the base64 URI prefix
       console.log(base64);
       setMessage("Loading...");
       try {
@@ -33,24 +33,24 @@ export default function Page() {
         const data = await response.json();
         setMessage(data.healthy);
       } catch (error) {
-        console.error('Error al enviar la imagen:', error);
+        console.error('Error uploading the image:', error);
       }
     } else {
-      alert('No se ha seleccionado ninguna imagen.');
+      alert('No image selected.');
     }
   };
 
   return (
     <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-6 space-y-8">
       <Section title="Computerized Recognition Of Plants diseases" className="w-3/4 border-2 border-[#697565] p-6 rounded-lg text-center" />
-      <SmallSection title="Suba  una imagen de la planta que desee evaluar, y el sistema indicará si la planta tiene alguna enfermedad." className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center" />
+      <SmallSection title="Upload an image of the plant you want to evaluate, and the system will indicate if the plant has any disease." className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg text-center" />
 
       <div className="w-3/4 max-w-full border-2 border-[#697565] p-6 rounded-lg">
         <div className="flex flex-col items-center space-y-4">
           {image ? (
             <img
               src={image}
-              alt="Imagen cargada"
+              alt="Image upload"
               className="w-full max-w-md h-auto rounded-lg"
             />
           ) : (
@@ -88,7 +88,7 @@ function SmallSection({ title, className }: { title: string; className: string }
 function Placeholder() {
   return (
     <div className="w-full h-64 flex justify-center items-center rounded-lg" style={{ backgroundColor: '#ecdfcc' }}>
-      <span style={{ color: '#1e201e' }}>No se ha seleccionado ninguna imagen</span>
+      <span style={{ color: '#1e201e' }}>No image selected</span>
     </div>
   );
 }
@@ -116,10 +116,9 @@ function SaveButton({ onClick, message }: { onClick: () => void; message: string
         onClick={onClick}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
       >
-        Subir Imagen
+        Upload Image
       </button>
       <span>{message}</span>
     </div>
   );
 }
-
